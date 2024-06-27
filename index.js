@@ -17,7 +17,7 @@ bot.on("callback_query", function (query) {
         bot.answerCallbackQuery(query.id, "Üzgünüm, '" + query.game_short_name + "' mevcut değil.");
     } else {
         queries[query.id] = query;
-        let gameurl = "https://musttoprak.github.io/TelegramBot/";
+        let gameurl = "https://musttoprak.github.io/FirstgGameTelegramBot/";
         bot.answerCallbackQuery({
             callback_query_id: query.id,
             url: gameurl
