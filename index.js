@@ -7,9 +7,9 @@ const bot = new TelegramBot(TOKEN, {
     polling: true
 });
 const port = process.env.PORT || 5000;
-const gameName = "Короткое имя игры";
+const gameName = "firstgametelegram";
 const queries = {};
-server.use(express.static(path.join(__dirname, 'Arka uç kök klasör adı')));
+server.use(express.static(path.join(__dirname, 'firstgametelegram')));
 bot.onText(/help/, (msg) => bot.sendMessage(msg.from.id, "Oynamak istiyorsan /game de."));
 bot.onText(/start|game/, (msg) => bot.sendGame(msg.from.id, gameName));
 bot.on("callback_query", function (query) {
