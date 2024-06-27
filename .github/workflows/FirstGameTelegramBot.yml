@@ -1,4 +1,3 @@
-# GitHub Pages'e statik içerik dağıtmak için basit bir iş akışı
 name: Deploy static content to GitHub Pages
 
 on:
@@ -21,7 +20,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Yalnızca dağıtım işlemi olduğu için tek bir iş
+  # Yapılandırmada adımların sıralı olarak çalıştığı bir yapıya sahip.
   deploy:
     environment:
       name: github-pages
@@ -30,8 +29,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      # Statik içerik artefaktını yükle
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: . # Tüm deposunu yükle
+          name: github-pages # Artefakt adı
+
+      # GitHub Pages için yapılandırma adımları
       - name: Setup Pages
         uses: actions/configure-pages@v3
+
+      # GitHub Pages'e dağıtım yap
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifact: github-pages # Yüklenecek artefaktın adı
